@@ -1,10 +1,13 @@
-%h1 HELLO CHUCK
+.container
+  %h2 Chuck Norris
 
-= form_tag({:controller => "facts", :action => "search"}, :remote => true)
-.form-group
-  = text_field_tag :text, "", class: 'search'
-  = select_tag 'category', options_for_select(@categories), :include_blank => "random"
-  = submit_tag 'Search', class: 'btn btn-primary'
+  = form_tag({:controller => "facts", :action => "search"}, :remote => true, class: 'form-inline')
+  .form-group
+    = text_field_tag :text, "", class: 'search form-control'
+  .form-group
+    = select_tag 'category', options_for_select(@categories), :include_blank => "random", class: 'form-control'
+  .form-group
+    = submit_tag 'Search', class: 'btn btn-primary'
 
-.facts
+  .facts
 

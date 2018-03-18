@@ -41,6 +41,10 @@ gem 'kaminari'
 
 gem 'jquery-rails'
 
+# Use Bootstrap
+gem 'bootstrap', '~> 4.0.0'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
+
 #HAML
 gem 'haml'
 
