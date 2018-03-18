@@ -1,0 +1,7 @@
+- if @facts.any?
+	- @facts.each do |fact|
+		%p=fact['value']
+	-# .pagination-container
+	-# 	= paginate @facts, left: 1, right: 1, window: 2, params: {item_name: 'facts', items_per_page: 5}, total_count: 5, remote: true
+- else
+	%p 'No facts Found'
