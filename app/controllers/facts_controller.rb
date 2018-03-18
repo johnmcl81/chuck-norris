@@ -21,11 +21,14 @@ class FactsController < ApplicationController
 			format.js {
                 api_response =HTTP::ApiConsumer.new(url,query).get_response
                 puts api_response
+                @total = 1
                 if api_response['value']
-                    @facts = [api_response]
+                    facts_array = [api_response]
                 else
-                    @facts = api_response['result']
+                    facts_array = api_response['result']
+                    @total = api_response[:total]
                 end
+                @facts = Kaminari.paginate_array(facts_array).page(params[:page]).per(5)
 			}
 
 		end
