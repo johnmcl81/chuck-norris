@@ -29,6 +29,11 @@ class FactsController < ApplicationController
                     @total = api_response[:total]
                 end
                 @facts = Kaminari.paginate_array(facts_array).page(params[:page]).per(5)
+                
+                puts params.inspect
+                search_record = Search.new(text: params[:text], category: params[:category], results: facts_array.map{ |f| f['value'] }&.to_s)
+                puts search_record.inspect
+                search_record.save()
 			}
 
 		end
