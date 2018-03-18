@@ -3,7 +3,9 @@
 
   = form_tag({:controller => "facts", :action => "search"}, :remote => true, class: 'form-inline')
   .form-group
-    = text_field_tag :text, "", class: 'search form-control'
+    = text_field_tag :text, "", class: 'search form-control', placeholder: 'enter search...'
+  .form-group
+    = text_field_tag :email, "", class: 'search form-control', placeholder: 'email address'
   .form-group
     = select_tag 'category', options_for_select(@categories), :include_blank => "random", class: 'form-control'
   .form-group

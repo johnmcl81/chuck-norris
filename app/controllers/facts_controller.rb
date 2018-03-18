@@ -30,10 +30,14 @@ class FactsController < ApplicationController
                 end
                 @facts = Kaminari.paginate_array(facts_array).page(params[:page]).per(5)
                 
-                puts params.inspect
                 search_record = Search.new(text: params[:text], category: params[:category], results: facts_array.map{ |f| f['value'] }&.to_s)
-                puts search_record.inspect
                 search_record.save()
+
+                if params[:email]
+                    email_text = facts_array.map{ |f| f['value'] }&.join(' \n ').to_s
+                    # SearchMailer.send(email_text).deliver
+                    ActionMailer::Base.mail(from: "j.d.mclachlan@gmail.com", to: params[:email], subject: "Your Chuck Norris Facts", body: email_text).deliver
+                end
 			}
 
 		end
